@@ -6,10 +6,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CheckListBoxTest"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance local:ViewModel, IsDesignTimeCreatable=True}"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-      <xctk:CheckListBox Margin="5">
-      </xctk:CheckListBox>
-        
-    </Grid>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <!--
+    You can also used ValueMemberPath, SelectedMemberPath & DisplayMemberPath see https://wpftoolkit.codeplex.com/SourceControl/latest#Main/Source/ExtendedWPFToolkitSolution/Src/Xceed.Wpf.Toolkit.LiveExplorer/Samples/CheckLists/Views/CheckListsView.xaml
+    -->
+    <xctk:CheckListBox 
+      Grid.Row="0" Margin="5" ItemsSource="{Binding AllItems}"  
+      SelectedItemsOverride="{Binding SelectedItems}" 
+      Command="{Binding Checked}" BorderThickness="0,1,1,1"/>
+  </Grid>
 </Window>
